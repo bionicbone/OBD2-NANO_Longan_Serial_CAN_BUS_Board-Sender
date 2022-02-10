@@ -19,6 +19,7 @@ void setup()
 {
   Serial.begin(250000);
   delay(10);
+  // NOTE: Maximum is 38400 otherwise I have detected errors in teh ID field
   can.begin(can_tx, can_rx, SERIAL_RATE_38400);      // tx, rx
   Serial.println("begin");
 
@@ -35,18 +36,42 @@ void setup()
 
 }
 
-unsigned char dta[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+unsigned char dta[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+unsigned long dtaCounter = 0;
 
 // send(unsigned long id, byte ext, byte rtrBit, byte len, const byte *buf);
 void loop()
 {
+  // Create loop timer
+  unsigned long timer = micros();
+  
+  // Increase the counter
+  dtaCounter++;
+  //Parse that dtaCounter into values
+
+  dta[7] = dtaCounter;
+  dta[6] = dtaCounter >> 8;
+  dta[5] = dtaCounter >> 16;
+  dta[4] = dtaCounter >> 24;
+  dta[3] = dtaCounter >> 32;
+  dta[2] = dtaCounter >> 40;
+  dta[1] = dtaCounter >> 48;
+  dta[0] = dtaCounter >> 56;
+  
+  
   can.send(0x0145, 0, 0, 8, dta);   // SEND TO ID:0X55
-  Serial.print("Sending: ");
-  Serial.print(0x0145, HEX);
-  Serial.print(" ");
-  Serial.print("00 00 08 ");
-  Serial.println("01 02 03 04 05 06 07 08");
-  delay(500);
+  //Serial.print("Sending: ");
+  //Serial.print(0x0145, HEX);
+  //Serial.print(" ");
+  //Serial.print("00 00 08 ");
+  //for (int i = 0; i <8; i++) {
+  //  Serial.print(dta[i]); Serial.print(" ");
+  //}
+  //Serial.println("");
+  
+  // Delay loop
+  while (micros() - timer < 216) {}
+
 }
 
 // END FILE
