@@ -47,16 +47,17 @@ void loop()
   
   // Increase the counter
   dtaCounter++;
-  //Parse that dtaCounter into values
+  if (dtaCounter == 1099511627775) dtaCounter = 0;
 
+  //Parse that dtaCounter into values
   dta[7] = dtaCounter;
   dta[6] = dtaCounter >> 8;
   dta[5] = dtaCounter >> 16;
   dta[4] = dtaCounter >> 24;
   dta[3] = dtaCounter >> 32;
-  dta[2] = dtaCounter >> 40;
-  dta[1] = dtaCounter >> 48;
-  dta[0] = dtaCounter >> 56;
+  //dta[2] = dtaCounter >> 40;
+  //dta[1] = dtaCounter >> 48;
+  //dta[0] = dtaCounter >> 56;
   
   
   can.send(0x0145, 0, 0, 8, dta);   // SEND TO ID:0X55
@@ -70,7 +71,16 @@ void loop()
   //Serial.println("");
   
   // Delay loop
-  while (micros() - timer < 216) {}
+
+
+  // It should take around 222uS to send a packet, the Nano can not run fast enough
+  while (micros() - timer < 4000) {}
+
+  // report loop time - if its more than 4000uS then the nano took longer to send the data
+  unsigned long loopTime = micros() - timer;
+  dta[2] = loopTime >> 0;
+  dta[1] = loopTime >> 8;
+  dta[0] = loopTime >> 16;
 
 }
 
