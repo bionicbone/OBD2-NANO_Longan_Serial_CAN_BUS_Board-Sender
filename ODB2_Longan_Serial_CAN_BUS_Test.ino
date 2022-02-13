@@ -20,9 +20,11 @@ void setup()
   Serial.begin(250000);
   delay(10);
   // NOTE: Maximum is 38400 otherwise I have detected errors in teh ID field
-  can.begin(can_tx, can_rx, SERIAL_RATE_38400);      // tx, rx
+  can.begin(can_tx, can_rx, SERIAL_RATE_9600);      // tx, rx
   Serial.println("begin");
 
+  //can.factorySetting();
+  
   while (!Serial);
 
   if (can.baudRate(SERIAL_RATE_38400))
@@ -33,7 +35,17 @@ void setup()
   {
     Serial.println("set baud rate fail");
   }
-
+  
+  // Note BUS must be connected to successfully set CAN Rate
+  if (can.canRate(CAN_RATE_125)) {
+    Serial.println("set CAN rate ok");
+  }
+  else
+  {
+    Serial.println("set CAN rate fail");
+  }
+ 
+  
 }
 
 unsigned char dta[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };

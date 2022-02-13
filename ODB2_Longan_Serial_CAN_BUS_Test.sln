@@ -5,7 +5,17 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ODB2_Longan_Serial_CAN_BUS_Test", "ODB2_Longan_Serial_CAN_BUS_Test.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Serial_CAN_Arduino-master-1.0.0", "Libraries\Serial_CAN_Arduino-master\1.0.0\Serial_CAN_Arduino-master\Serial_CAN_Arduino-master-1.0.0.vcxitems", "{E762DA82-AF5D-416D-B347-7C6B44A688D3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SoftwareSerial-1.0", "Libraries\SoftwareSerial\1.0\SoftwareSerial\SoftwareSerial-1.0.vcxitems", "{0F2582BA-2337-4E1B-83CE-287817AB6349}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Libraries\SoftwareSerial\1.0\SoftwareSerial\SoftwareSerial-1.0.vcxitems*{0f2582ba-2337-4e1b-83ce-287817ab6349}*SharedItemsImports = 9
+		Libraries\Serial_CAN_Arduino-master\1.0.0\Serial_CAN_Arduino-master\Serial_CAN_Arduino-master-1.0.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\SoftwareSerial\1.0\SoftwareSerial\SoftwareSerial-1.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\Serial_CAN_Arduino-master\1.0.0\Serial_CAN_Arduino-master\Serial_CAN_Arduino-master-1.0.0.vcxitems*{e762da82-af5d-416d-b347-7c6b44a688d3}*SharedItemsImports = 9
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
