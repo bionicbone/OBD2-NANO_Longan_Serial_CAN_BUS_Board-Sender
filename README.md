@@ -25,3 +25,5 @@ This board is very small and could be the favourite board if I can get the above
 It could be worth spending more time with this board
 
 WARNING: Do not set the CAN baud rate higher than 38400 otherwise errors are presented on the bus that +8 to the ID number like this.
+
+ADDED ability to change CAN Bus Speed in this example
