@@ -86,7 +86,7 @@ void loop()
 
 
   // It should take around 222uS to send a packet, the Nano can not run fast enough
-  while (micros() - timer < 4000) {}
+  //while (micros() - timer < 4000) {}
 
   // report loop time - if its more than 4000uS then the nano took longer to send the data
   unsigned long loopTime = micros() - timer;
