@@ -87,9 +87,9 @@ void loop()
   // Send MPH = MS_0x490 - int((D4 * 256 + D5) /100 * 0.621371) - updated ~65ms
   // MPH = 45
   dta[7] = 0;
-  dta[6] = 0;
-  dta[5] = 0x4A;
-  dta[4] = 0x1C;
+  dta[6] = 0x4A;
+  dta[5] = 0x1C;
+  dta[4] = 0;
   dta[3] = 0;
   dta[2] = 0;
   dta[1] = 0;
