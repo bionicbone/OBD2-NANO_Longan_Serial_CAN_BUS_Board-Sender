@@ -84,10 +84,10 @@ void loop()
   //Serial.println("");
   
   
-  // Send MPH = MS_0x490 - int((D4 * 256 + D5) /100 * 0.621371) - updated ~65ms
+  // Send MPH = MS_0x490 - int((D5 * 256 + D6) /100 * 0.621371) - updated ~65ms
   // MPH = 45
   dta[7] = 0;
-  dta[6] = 0x4A;
+  dta[6] = 0x4B;
   dta[5] = 0x1C;
   dta[4] = 0;
   dta[3] = 0;
