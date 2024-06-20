@@ -57,6 +57,8 @@ void loop()
   // Create loop timer
   unsigned long timer = micros();
   
+  // This sends a data counter on ID 0x145 simply so I can see the Nano and MS CAN has active data
+  
   // Increase the counter
   dtaCounter++;
   if (dtaCounter == 1099511627775) dtaCounter = 0;
@@ -71,20 +73,60 @@ void loop()
   //dta[1] = dtaCounter >> 48;
   //dta[0] = dtaCounter >> 56;
   
-  
-  can.send(0x0145, 0, 0, 8, dta);   // SEND TO ID:0X55
+  can.send(0x0145, 0, 0, 8, dta);   // SEND TO ID:0X0145
   //Serial.print("Sending: ");
   //Serial.print(0x0145, HEX);
   //Serial.print(" ");
   //Serial.print("00 00 08 ");
   //for (int i = 0; i <8; i++) {
-  //  Serial.print(dta[i]); Serial.print(" ");
+  //  Serial.print(dta[i],HEX); Serial.print(" ");
   //}
   //Serial.println("");
   
+  
+  // Send MPH = MS_0x490 - int((D4 * 256 + D5) /100 * 0.621371) - updated ~65ms
+  // MPH = 45
+  dta[7] = 0;
+  dta[6] = 0;
+  dta[5] = 0x4A;
+  dta[4] = 0x1C;
+  dta[3] = 0;
+  dta[2] = 0;
+  dta[1] = 0;
+  dta[0] = 0;
+  can.send(0x0490, 0, 0, 8, dta); 
+  //Serial.print("Sending: ");
+  //Serial.print(0x0490, HEX);
+  //Serial.print(" ");
+  //Serial.print("00 00 08 ");
+  //for (int i = 0; i <8; i++) {
+  //  Serial.print(dta[i], HEX); Serial.print(" ");
+  //}
+  //Serial.println("");
+
+
+  // Send RPM = MS_0x0B8 - (D4 * 256 + D5) - updated ~62ms
+  // RPM = 1500
+  dta[7] = 0;
+  dta[6] = 0;
+  dta[5] = 0xDC;
+  dta[4] = 0x05;
+  dta[3] = 0;
+  dta[2] = 0;
+  dta[1] = 0;
+  dta[0] = 0;
+  can.send(0x00B8, 0, 0, 8, dta);
+  //Serial.print("Sending: ");
+  //Serial.print(0x00B8, HEX);
+  //Serial.print(" ");
+  //Serial.print("00 00 08 ");
+  //for (int i = 0; i <8; i++) {
+  //  Serial.print(dta[i], HEX); Serial.print(" ");
+  //}
+  //Serial.println("");
+
+  
   // Delay loop
-
-
   // It should take around 222uS to send a packet, the Nano can not run fast enough
   //while (micros() - timer < 4000) {}
 

@@ -21,5 +21,8 @@
     <ClInclude Include="__vm\.ODB2_Longan_Serial_CAN_BUS_Test.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="__vm\.OBD2-NANO_Longan_Serial_CAN_BUS_Board-Sender.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
